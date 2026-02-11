@@ -1,0 +1,236 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+}
+
+/* ヘッダー */
+.header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 20px;
+    left: 40px;
+    width: calc(100% - 80px);
+    height: 64px;
+    padding: 20px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(6px);
+}
+
+.header-logo {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.header-logo img {
+    width: 106px;
+}
+
+.header.is-show .header-logo {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.header nav ol {
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 40px;
+    list-style: none;
+    align-items: center;
+}
+
+.header nav ol a {
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #161F3B;
+    line-height: 1.8;
+    transition: all 0.5s;
+}
+
+.header nav ol a.content {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 6px 10px 6px 20px;
+    background: #161F3B;
+    color: #fff;
+    text-decoration: none;
+}
+
+.contact-text {
+    letter-spacing: 0.1em;
+}
+
+.contact-arrow {
+    font-size: 20px;
+    line-height: 1;
+    padding-left: 20px;
+    border-left: solid 1px #fff;
+}
+
+.header nav ol a:hover {
+    opacity: 0.8;
+}
+
+.mv {
+    position: relative;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background-image: linear-gradient(0deg, #fff, #e6e6e6);
+    z-index: -999;
+}
+
+/* テキスト */
+.mv-text {
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: bold;
+    opacity: 0;
+    animation: textFade 3s ease forwards;
+}
+
+/* ロゴ */
+.mv-logo {
+    position: absolute;
+    opacity: 0;
+    animation: logoFade 2s ease forwards;
+    animation-delay: 3s;
+    /* テキストが消えた後 */
+}
+
+.mv-logo img {
+    width: 400px;
+}
+
+/* テキスト表示 → 消える */
+@keyframes textFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ロゴ表示 */
+@keyframes logoFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.about-content {
+    height: 100vh;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    text-align: center;
+    line-height: 2;
+}
+
+/* loop */
+.marquee-wrapper {
+    overflow: hidden;
+    padding: 140px 0;
+}
+
+.marquee-rotate {
+    transform: rotate(-5deg);
+}
+
+.marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+}
+
+.marquee-group {
+    display: flex;
+    column-gap: 30px;
+}
+
+.marquee-group .marquee-item {
+    width: calc(100vw / 4 -20px);
+    /* margin-right: 24px; */
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+.marquee-group .marquee-item img {
+    width: 100%;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.fade-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.button {
+    display: inline-block;
+    margin: 0 0 24px 0;
+}
+
+.button a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    padding: 20px 60px;
+    background-color: rgba(26, 96, 150, 0.8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(26, 96, 150, 0.2);
+    box-shadow: 0 4px 8px rgba(26, 96, 150, 0.2);
+    transition: all 0.5s;
+}
+
+.button a:hover {
+    opacity: 0.8;
+}
