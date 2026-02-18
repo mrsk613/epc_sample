@@ -1,5 +1,23 @@
+const text = document.querySelector(".js-split");
+const logo = document.querySelector(".mv-logo");
 const mv = document.getElementById("mv");
 const header = document.querySelector(".header");
+
+const chars = text.textContent.split("");
+text.textContent = "";
+
+chars.forEach((char, index) => {
+  const span = document.createElement("span");
+  span.textContent = char;
+  span.style.animationDelay = `${index * 0.05}s`;
+  text.appendChild(span);
+});
+
+// 全部表示されたあとに動かす
+setTimeout(() => {
+  text.classList.add("is-move");
+  logo.classList.add("is-show");
+}, chars.length * 50 + 800);
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {

@@ -89,59 +89,54 @@
     z-index: -999;
 }
 
+.mv-inner {
+    text-align: center;
+}
+
 /* テキスト */
-.mv-text {
-    font-size: clamp(3rem, 8vw, 8rem);
-    font-weight: bold;
-    opacity: 0;
-    animation: textFade 3s ease forwards;
+.mv-text span {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  font-size: clamp(3rem, 8vw, 8rem);
+  transform: translateY(20px);
+  animation: charIn 0.6s ease forwards;
+}
+
+/* テキスト全体の上移動 */
+.mv-text.is-move {
+  animation: textMoveUp 1s ease forwards;
 }
 
 /* ロゴ */
 .mv-logo {
-    position: absolute;
-    opacity: 0;
-    animation: logoFade 2s ease forwards;
-    animation-delay: 3s;
-    /* テキストが消えた後 */
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.mv-logo.is-show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mv-logo img {
     width: 400px;
 }
 
-/* テキスト表示 → 消える */
-@keyframes textFade {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    20% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    80% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
+@keyframes charIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-/* ロゴ表示 */
-@keyframes logoFade {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+@keyframes textMoveUp {
+  to {
+    transform: translateY(-20px);
+  }
 }
 
 .about-content {
@@ -216,6 +211,7 @@
     display: inline-block;
     margin: 0 0 24px 0;
 }
+
 
 .button a {
     display: block;

@@ -89,58 +89,48 @@
     z-index: -999;
 }
 
+.mv-inner {
+    text-align: center;
+}
+
 /* テキスト */
 .mv-text {
     font-size: clamp(3rem, 8vw, 8rem);
     font-weight: bold;
     opacity: 0;
-    animation: textFade 3s ease forwards;
+    transform: translateY(20px);
+    animation: textIn 1.5s ease forwards, textMoveUp 1s ease forwards 2s;
 }
 
 /* ロゴ */
 .mv-logo {
-    position: absolute;
+    margin-top: 24px;
     opacity: 0;
-    animation: logoFade 2s ease forwards;
-    animation-delay: 3s;
-    /* テキストが消えた後 */
+    transform: translateY(10px);
+    animation: logoIn 1s ease forwards 2.5s;
 }
 
 .mv-logo img {
     width: 400px;
 }
 
-/* テキスト表示 → 消える */
-@keyframes textFade {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    20% {
+@keyframes textIn {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
+}
 
-    80% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
+@keyframes textMoveUp {
+    to {
+        transform: translateY(-20px);
     }
 }
 
-/* ロゴ表示 */
-@keyframes logoFade {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
+@keyframes logoIn {
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
     }
 }
 
